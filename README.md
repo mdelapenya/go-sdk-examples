@@ -1,6 +1,6 @@
 # Docker Go SDK Examples
 
-This repository contains examples of using the Docker Go SDK.
+This repository contains examples of using the [Docker Go SDK](https://github.com/docker/go-sdk).
 
 ## Running the examples
 
