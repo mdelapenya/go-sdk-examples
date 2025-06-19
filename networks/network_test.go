@@ -8,6 +8,7 @@ import (
 	"github.com/docker/go-sdk/network"
 )
 
+// ExampleNew shows how to create a new network.
 func ExampleNew() {
 	nw, err := network.New(context.Background(), network.WithName("my-network"))
 	if err != nil {
