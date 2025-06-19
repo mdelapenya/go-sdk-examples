@@ -14,6 +14,9 @@ import (
 	"github.com/docker/go-sdk/container"
 )
 
+// ExampleRun_withLogger shows how to run a container with a custom logger.
+// The logger is part of the Docker client configuration, so instead of using the
+// default Docker client, we create a new one with a custom logger.
 func ExampleRun_withLogger() {
 	buf := bytes.NewBuffer(nil)
 	logger := slog.New(slog.NewTextHandler(buf, nil))
