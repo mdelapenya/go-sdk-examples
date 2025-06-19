@@ -5,5 +5,5 @@ This repository contains examples of using the [Docker Go SDK](https://github.co
 ## Running the examples
 
 ```shell
-go test -v -timeout 30s ./...
+go test -v -timeout 30s -count=1 ./...
 ```
