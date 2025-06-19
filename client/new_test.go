@@ -65,3 +65,46 @@ func ExampleNew_withCustomHost_valid() {
 	// Output:
 	// false
 }
+
+// ExampleNew_useUnderlyingClient shows how to use the underlying Docker client.
+func ExampleNew_useUnderlyingClient() {
+	cli, err := client.New(context.Background())
+	if err != nil {
+		log.Println(err)
+	}
+
+	dockerClient, err := cli.Client()
+	if err != nil {
+		log.Println(err)
+	}
+	fmt.Println(dockerClient != nil)
+
+	ping, err := dockerClient.Ping(context.Background())
+	if err != nil {
+		log.Println(err)
+	}
+	fmt.Println(ping.OSType != "")
+
+	// Output:
+	// true
+	// true
+}
+
+// ExampleDefault_useUnderlyingClient shows how to use the underlying Docker client.
+func ExampleDefault_useUnderlyingClient() {
+	dockerClient, err := client.DefaultClient.Client()
+	if err != nil {
+		log.Println(err)
+	}
+	fmt.Println(dockerClient != nil)
+
+	ping, err := dockerClient.Ping(context.Background())
+	if err != nil {
+		log.Println(err)
+	}
+	fmt.Println(ping.OSType != "")
+
+	// Output:
+	// true
+	// true
+}
