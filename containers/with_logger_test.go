@@ -9,9 +9,11 @@ import (
 	"log/slog"
 	"net/http"
 	"strings"
+	"time"
 
 	"github.com/docker/go-sdk/client"
 	"github.com/docker/go-sdk/container"
+	"github.com/docker/go-sdk/container/wait"
 )
 
 // ExampleRun_withLogger shows how to run a container with a custom logger.
@@ -32,6 +34,7 @@ func ExampleRun_withLogger() {
 		container.WithDockerClient(cli),
 		container.WithImage("nginx:alpine"),
 		container.WithExposedPorts("80/tcp"),
+		container.WithWaitStrategy(wait.ForListeningPort("80/tcp").WithTimeout(time.Second*5)),
 	)
 	if err != nil {
 		log.Println(err)
