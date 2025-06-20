@@ -5,6 +5,7 @@ go 1.24.1
 require (
 	github.com/docker/go-sdk/client v0.1.0-alpha004
 	github.com/docker/go-sdk/container v0.1.0-alpha004
+	github.com/docker/go-sdk/context v0.1.0-alpha004
 	github.com/docker/go-sdk/network v0.1.0-alpha004
 )
 
@@ -21,7 +22,6 @@ require (
 	github.com/docker/docker v28.2.2+incompatible // indirect
 	github.com/docker/go-connections v0.5.0 // indirect
 	github.com/docker/go-sdk/config v0.1.0-alpha004 // indirect
-	github.com/docker/go-sdk/context v0.1.0-alpha004 // indirect
 	github.com/docker/go-sdk/image v0.1.0-alpha004 // indirect
 	github.com/docker/go-units v0.5.0 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
