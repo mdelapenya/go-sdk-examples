@@ -6,6 +6,7 @@ require (
 	github.com/docker/go-sdk/client v0.1.0-alpha006
 	github.com/docker/go-sdk/container v0.1.0-alpha006
 	github.com/docker/go-sdk/context v0.1.0-alpha006
+	github.com/docker/go-sdk/image v0.1.0-alpha006
 	github.com/docker/go-sdk/network v0.1.0-alpha006
 )
 
@@ -22,7 +23,6 @@ require (
 	github.com/docker/docker v28.2.2+incompatible // indirect
 	github.com/docker/go-connections v0.5.0 // indirect
 	github.com/docker/go-sdk/config v0.1.0-alpha006 // indirect
-	github.com/docker/go-sdk/image v0.1.0-alpha006 // indirect
 	github.com/docker/go-units v0.5.0 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
 	github.com/go-logr/logr v1.4.2 // indirect
