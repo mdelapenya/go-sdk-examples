@@ -103,6 +103,13 @@ func ExampleDefault_useUnderlyingClient() {
 	if err != nil {
 		log.Println(err)
 	}
+	defer func() {
+		// do not forget to close the client
+		if err := dockerClient.Close(); err != nil {
+			log.Println(err)
+		}
+	}()
+
 	fmt.Println(dockerClient != nil)
 
 	ping, err := dockerClient.Ping(context.Background())
