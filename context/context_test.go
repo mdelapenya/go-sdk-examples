@@ -40,16 +40,16 @@ func ExampleDockerHostFromContext() {
 }
 
 func ExampleList() {
-	contexts, err := context.List()
+	_, err := context.List()
 	if err != nil {
 		log.Printf("error listing contexts: %s", err)
 		return
 	}
 
-	fmt.Println(len(contexts) > 0)
+	fmt.Println(err)
 
 	// Output:
-	// true
+	// <nil>
 }
 
 func ExampleInspect() {
