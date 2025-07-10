@@ -1,0 +1,97 @@
+version: "2"
+output:
+  formats:
+    text:
+      path: stdout
+  path-prefix: .
+linters:
+  enable:
+    - errorlint
+    - gocritic
+    - misspell
+    - nakedret
+    - nolintlint
+    - perfsprint
+    - revive
+    - testifylint
+    - thelper
+    - usestdlibvars
+  settings:
+    errorlint:
+      errorf: true
+      errorf-multi: true
+      asserts: true
+      comparison: true
+    revive:
+      rules:
+        - name: blank-imports
+        - name: context-as-argument
+          arguments:
+            - allowTypesBefore: '*testing.T,*testing.B'
+        - name: context-keys-type
+        - name: dot-imports
+        - name: early-return
+          arguments:
+            - preserveScope
+        - name: empty-block
+        - name: error-naming
+          disabled: true
+        - name: error-return
+        - name: error-strings
+          disabled: true
+        - name: errorf
+        - name: increment-decrement
+        - name: indent-error-flow
+          arguments:
+            - preserveScope
+        - name: range
+        - name: receiver-naming
+        - name: redefines-builtin-id
+          disabled: true
+        - name: superfluous-else
+          arguments:
+            - preserveScope
+        - name: time-naming
+        - name: unexported-return
+          disabled: true
+        - name: unreachable-code
+        - name: unused-parameter
+        - name: use-any
+        - name: var-declaration
+        - name: var-naming
+          arguments:
+            - - ID
+            - - VM
+            - - upperCaseConst: true
+    testifylint:
+      enable-all: true
+      disable:
+        - float-compare
+        - go-require
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - gci
+    - gofumpt
+  settings:
+    gci:
+      sections:
+        - standard
+        - default
+        - prefix(github.com/docker)
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
