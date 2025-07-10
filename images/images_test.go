@@ -96,7 +96,7 @@ func Example_buildFromDir_multiple() {
 }
 
 func Example_imagesFromDockerfile() {
-	images, err := image.ImagesFromDockerfile("testdata/complex/Dockerfile", nil)
+	images, err := image.ImagesFromDockerfile("testdata/multiple/Dockerfile", nil)
 	if err != nil {
 		log.Println("Error reading images from Dockerfile:", err)
 		return
