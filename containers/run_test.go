@@ -56,5 +56,4 @@ func ExampleRun() {
 
 	// Output:
 	// true
-
 }

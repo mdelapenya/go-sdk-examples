@@ -19,7 +19,11 @@ func ExampleRun_withNetwork() {
 		fmt.Println(err)
 		return
 	}
-	defer nw.Terminate(context.Background())
+	defer func() {
+		if err := nw.Terminate(context.Background()); err != nil {
+			log.Println(err)
+		}
+	}()
 
 	ctr, err := container.Run(
 		context.Background(),
