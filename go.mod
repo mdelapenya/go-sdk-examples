@@ -2,13 +2,21 @@ module github.com/mdelapenya/go-sdk-examples
 
 go 1.24.1
 
+// remove it once alpha-009 is released
+replace (
+	github.com/docker/go-sdk/client => github.com/docker/go-sdk/client v0.0.0-20250710153814-1f6ed486a631
+	github.com/docker/go-sdk/volume => github.com/docker/go-sdk/volume v0.0.0-20250710153814-1f6ed486a631
+)
+
 require (
-	github.com/docker/go-sdk/client v0.1.0-alpha008
+	github.com/docker/docker v28.2.2+incompatible
+	github.com/docker/go-sdk/client v0.1.0-alpha009
 	github.com/docker/go-sdk/config v0.1.0-alpha008
 	github.com/docker/go-sdk/container v0.1.0-alpha008
 	github.com/docker/go-sdk/context v0.1.0-alpha008
 	github.com/docker/go-sdk/image v0.1.0-alpha008
 	github.com/docker/go-sdk/network v0.1.0-alpha008
+	github.com/docker/go-sdk/volume v0.1.0-alpha009
 )
 
 require (
@@ -22,11 +30,10 @@ require (
 	github.com/containerd/platforms v0.2.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/distribution/reference v0.6.0 // indirect
-	github.com/docker/docker v28.2.2+incompatible // indirect
 	github.com/docker/go-connections v0.5.0 // indirect
 	github.com/docker/go-units v0.5.0 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
-	github.com/go-logr/logr v1.4.2 // indirect
+	github.com/go-logr/logr v1.4.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/google/uuid v1.6.0 // indirect
@@ -47,9 +54,9 @@ require (
 	github.com/stretchr/testify v1.10.0 // indirect
 	go.opentelemetry.io/auto/sdk v1.1.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.61.0 // indirect
-	go.opentelemetry.io/otel v1.36.0 // indirect
-	go.opentelemetry.io/otel/metric v1.36.0 // indirect
-	go.opentelemetry.io/otel/trace v1.36.0 // indirect
+	go.opentelemetry.io/otel v1.37.0 // indirect
+	go.opentelemetry.io/otel/metric v1.37.0 // indirect
+	go.opentelemetry.io/otel/trace v1.37.0 // indirect
 	golang.org/x/sys v0.33.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
