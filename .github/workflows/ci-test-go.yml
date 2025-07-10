@@ -15,6 +15,7 @@ jobs:
     strategy:
       matrix:
         platform: ["ubuntu-latest"]
+        runtime: ["docker", "podman"]
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Check out code into the Go module directory
@@ -32,6 +33,10 @@ jobs:
 
       - name: ensure compilation
         run: go build ./...
+
+      - name: Podman setup
+        if: ${{ inputs.container-runtime == 'podman' }}
+        uses: ./.github/actions/podman-setup
 
       - name: debug
         if: ${{ matrix.platform == 'ubuntu-latest' }}
