@@ -1,5 +1,4 @@
 name: Run tests for a Go project
-run-name: "${{ inputs.go-version }}"
 
 on:
   workflow_call:
@@ -11,7 +10,7 @@ permissions:
 
 jobs:
   test-go-project:
-    name: "test: ${{ matrix.platform }}"
+    name: "test: ${{ matrix.platform }}/${{ matrix.container-runtime }}"
     strategy:
       matrix:
         platform: ["ubuntu-latest"]
