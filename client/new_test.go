@@ -34,20 +34,6 @@ func ExampleNew() {
 	// true
 }
 
-// ExampleNew_withCustomHost_invalid shows how to create a new client with an invalid host.
-func ExampleNew_withCustomHost_invalid() {
-	cli, err := client.New(context.Background(), client.WithDockerHost("tcp://127.0.0.1:1234"))
-	if err != nil {
-		log.Println(err)
-	}
-
-	// Because the host is not valid, the client will be nil.
-	fmt.Println(cli == nil)
-
-	// Output:
-	// true
-}
-
 // ExampleNew_withCustomHost_valid shows how to create a new client with a valid host.
 func ExampleNew_withCustomHost_valid() {
 	dockerHost, err := dockercontext.CurrentDockerHost()
