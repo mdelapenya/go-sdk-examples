@@ -18,8 +18,10 @@ runs:
       shell: bash
       run: |
         brew install lima-additional-guestagents docker colima
-        colima list
-        colima start --cpu 3 --memory 14 --disk 14 --runtime docker
+        # Patch lima after https://github.com/abiosoft/colima/issues/970
+        LIMACTL_PATH=$(brew --prefix)/bin/limactl
+        sudo curl -L -o $LIMACTL_PATH https://github.com/mikekazakov/lima-nohvf/raw/master/limactl && sudo chmod +x $LIMACTL_PATH
+        colima start --network-address --arch arm64 --vm-type=qemu --cpu 3 --memory 14 --disk 14 --runtime docker
         colima status
         colima --version
         echo "DOCKER_HOST=unix://${HOME}/.colima/default/docker.sock" >> $GITHUB_ENV
