@@ -3,7 +3,7 @@ description: "Sets up Colima"
 inputs:
   runner:
     description: "The runner type (e.g., macos-latest)"
-    required: true
+    default: macos-latest
 runs:
   using: "composite"
   steps:
@@ -17,7 +17,7 @@ runs:
     - name: Colima setup
       shell: bash
       run: |
-        brew install docker docker-compose colima
+        brew install docker colima
         colima start --cpu 3 --memory 14 --disk 14 --runtime docker
         colima status
         colima --version

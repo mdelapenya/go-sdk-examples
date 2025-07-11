@@ -47,6 +47,8 @@ jobs:
       - name: Colima setup
         if: ${{ matrix.container-runtime == 'colima' }}
         uses: ./.github/actions/colima-setup
+        with:
+          runner: ${{ matrix.platform }}
 
       - name: debug
         if: ${{ matrix.platform == 'ubuntu-latest' || matrix.platform == 'macos-latest' }}
