@@ -45,13 +45,14 @@ runs:
 
         echo "Rancher Desktop initialised successfully, now configure the container runtime"
         "${GH_RD_BIN}/rdctl" set \
-          --container-engine.name=moby \
           --application.admin-access=false \
-          --kubernetes.enabled=false \
-          --application.start-in-background=true \
           --application.path-management-strategy=manual \
+          --application.start-in-background=true \
+          --container-engine.name=moby \
+          --kubernetes.enabled=false \
           --virtual-machine.number-cpus=3 \
           --virtual-machine.memory-in-gb=14 \
+          --verbose \
           || true
 
         echo "Restart Rancher Desktop"
