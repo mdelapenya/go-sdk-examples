@@ -44,7 +44,7 @@ runs:
         fi
 
         echo "Rancher Desktop initialised successfully, now configure the container runtime"
-        ${GH_RD_BIN}/rdctl set \
+        "${GH_RD_BIN}/rdctl" set \
           --container-engine.name=moby \
           --application.admin-access=false \
           --kubernetes.enabled=false \
@@ -55,8 +55,8 @@ runs:
           || true
 
         echo "Restart Rancher Desktop"
-        ${GH_RD_BIN}/rdctl shutdown
-        ${GH_RD_BIN}/rdctl start
+        "${GH_RD_BIN}/rdctl" shutdown
+        "${GH_RD_BIN}/rdctl" start
 
         echo "Wait max of ${TIMEOUT_SECS_USER_SOCKET}s for Rancher socket"
 
