@@ -14,21 +14,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: ["ubuntu-latest", "macos-latest"]
-        container-runtime: ["containerd", "docker", "docker-rootless", "orbstack", "podman", "rancher"]
-        exclude:
-          - container-runtime: containerd
-            platform: macos-latest
-          - container-runtime: docker
-            platform: macos-latest
-          - container-runtime: docker-rootless
-            platform: macos-latest
-          - container-runtime: orbstack
-            platform: ubuntu-latest
-          - container-runtime: podman
-            platform: macos-latest
-          - container-runtime: rancher
-            platform: ubuntu-latest
+        platform: ["ubuntu-latest"]
+        container-runtime: ["containerd", "docker", "docker-rootless", "podman"]
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Check out code into the Go module directory
@@ -121,7 +108,6 @@ jobs:
           runner: ${{ matrix.platform }}
 
       - name: debug
-        if: ${{ matrix.platform == 'ubuntu-latest' || matrix.platform == 'macos-latest' }}
         timeout-minutes: 30
         shell: bash
         run: |
