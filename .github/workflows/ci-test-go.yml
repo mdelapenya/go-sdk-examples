@@ -43,15 +43,19 @@ jobs:
       - name: ensure compilation
         run: go build ./...
 
-      - name: Podman setup
-        if: ${{ matrix.container-runtime == 'podman' }}
-        uses: ./.github/actions/podman-setup
-
       - name: Colima setup
         if: ${{ matrix.container-runtime == 'colima' }}
         uses: ./.github/actions/colima-setup
         with:
           runner: ${{ matrix.platform }}
+
+      - name: Orbstack setup
+        if: ${{ matrix.container-runtime == 'orbstack' }}
+        uses: ./.github/actions/orbstack-setup
+
+      - name: Podman setup
+        if: ${{ matrix.container-runtime == 'podman' }}
+        uses: ./.github/actions/podman-setup
 
       - name: Rancher Desktop setup
         if: ${{ matrix.container-runtime == 'rancher' }}
