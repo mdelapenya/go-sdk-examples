@@ -18,6 +18,7 @@ runs:
       shell: bash
       run: |
         brew install lima-additional-guestagents docker colima
+        colima list
         colima start --cpu 3 --memory 14 --disk 14 --runtime docker
         colima status
         colima --version
