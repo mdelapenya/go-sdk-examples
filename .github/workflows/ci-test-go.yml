@@ -13,8 +13,15 @@ jobs:
     name: "test: ${{ matrix.platform }}/${{ matrix.container-runtime }}"
     strategy:
       matrix:
-        platform: ["ubuntu-latest"]
-        container-runtime: ["docker", "podman"]
+        platform: ["ubuntu-latest", "macos-latest"]
+        container-runtime: ["docker", "podman", "colima"]
+        exclude:
+          - container-runtime: docker
+            platform: macos-latest
+          - container-runtime: podman
+            platform: macos-latest
+          - container-runtime: colima
+            platform: ubuntu-latest
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Check out code into the Go module directory
@@ -37,8 +44,12 @@ jobs:
         if: ${{ matrix.container-runtime == 'podman' }}
         uses: ./.github/actions/podman-setup
 
+      - name: Colima setup
+        if: ${{ matrix.container-runtime == 'colima' }}
+        uses: ./.github/actions/colima-setup
+
       - name: debug
-        if: ${{ matrix.platform == 'ubuntu-latest' }}
+        if: ${{ matrix.platform == 'ubuntu-latest' || matrix.platform == 'macos-latest' }}
         timeout-minutes: 30
         shell: bash
         run: |
