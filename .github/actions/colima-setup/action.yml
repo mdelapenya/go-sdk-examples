@@ -10,8 +10,8 @@ runs:
     - name: Colima constraints
       shell: bash
       run: |
-        if [[ ! "${{ inputs.runner }}" =~ ^(macos|ubuntu).* ]]; then
-          echo "::error::Colima is only supported on macOS and Ubuntu"
+        if [[ ! "${{ inputs.runner }}" =~ ^macos.* ]]; then
+          echo "::error::Colima is only supported on macOS"
           exit 1
         fi
     - name: Colima Install (MacOS)
