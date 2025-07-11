@@ -12,6 +12,7 @@ jobs:
   test-go-project:
     name: "test: ${{ matrix.platform }}/${{ matrix.container-runtime }}"
     strategy:
+      fail-fast: false
       matrix:
         platform: ["ubuntu-latest", "macos-latest"]
         container-runtime: ["docker", "podman", "colima"]
