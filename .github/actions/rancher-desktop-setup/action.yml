@@ -20,7 +20,7 @@ runs:
         brew install docker docker-compose
         brew install --cask rancher
 
-        TIMEOUT_SECS_CLI_TOOLS=60
+        TIMEOUT_SECS_CLI_TOOLS=120
         TIMEOUT_SECS_USER_SOCKET=300
 
         echo "Open Rancher Desktop app"
