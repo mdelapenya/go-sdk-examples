@@ -14,10 +14,20 @@ runs:
           echo "::error::Colima is only supported on macOS"
           exit 1
         fi
-    - name: Colima setup
+    - name: Colima Install (MacOS)
+      if: ${{ inputs.runner == 'macos-latest' }}
       shell: bash
       run: |
         brew install lima-additional-guestagents docker colima
+    - name: Colima Install (Linux)
+      if: ${{ inputs.runner == 'ubuntu-latest' }}
+      shell: bash
+      run: |
+        curl -LO https://github.com/abiosoft/colima/releases/latest/download/colima-$(uname)-$(uname -m)
+        sudo install colima-$(uname)-$(uname -m) /usr/local/bin/colima
+    - name: Colima start
+      shell: bash
+      run: |
         colima start --cpu 3 --memory 14 --disk 14 --runtime docker
         colima status
         colima --version
