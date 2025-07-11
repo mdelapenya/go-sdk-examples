@@ -15,10 +15,12 @@ jobs:
       fail-fast: false
       matrix:
         platform: ["ubuntu-latest", "macos-latest"]
-        container-runtime: ["docker", "podman", "rancher"]
+        container-runtime: ["docker", "orbstack", "podman", "rancher"]
         exclude:
           - container-runtime: docker
             platform: macos-latest
+          - container-runtime: orbstack
+            platform: ubuntu-latest
           - container-runtime: podman
             platform: macos-latest
           - container-runtime: rancher

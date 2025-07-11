@@ -1,0 +1,24 @@
+name: "Orbstack Setup"
+description: "Sets up Orbstack"
+inputs:
+  runner:
+    description: "The runner type (e.g., macos-latest)"
+    default: macos-latest
+runs:
+  using: "composite"
+  steps:
+    - name: Orbstack constraints
+      shell: bash
+      run: |
+        if [[ ! "${{ inputs.runner }}" =~ ^macos.* ]]; then
+          echo "::error::Orbstack is only supported on macOS"
+          exit 1
+        fi
+    - name: Orbstack setup
+      shell: bash
+      run: |
+        brew install orbstack
+        orb list
+        orb start
+        orb version
+        docker context use orbstack
