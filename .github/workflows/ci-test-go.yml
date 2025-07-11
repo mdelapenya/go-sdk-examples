@@ -21,6 +21,8 @@ jobs:
             platform: macos-latest
           - container-runtime: podman
             platform: macos-latest
+          - container-runtime: colima
+            platform: ubuntu-latest
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Check out code into the Go module directory
