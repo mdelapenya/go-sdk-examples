@@ -20,7 +20,7 @@ runs:
         brew install docker docker-compose
         brew install --cask rancher
 
-        TIMEOUT_SECS_CLI_TOOLS=120
+        TIMEOUT_SECS_CLI_TOOLS=240
         TIMEOUT_SECS_USER_SOCKET=300
 
         echo "Open Rancher Desktop app"
@@ -32,7 +32,8 @@ runs:
               echo "Rancher Desktop CLI tools created after ${i}s"
               break
             fi
-            sleep 1
+            echo "CLI tools not installed yet after ${i}. Waiting..."
+            sleep 2
         done
 
         if [ ! -e "$HOME/.rd/bin/rdctl" ]; then
