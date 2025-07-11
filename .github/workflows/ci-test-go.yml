@@ -15,13 +15,13 @@ jobs:
       fail-fast: false
       matrix:
         platform: ["ubuntu-latest", "macos-latest"]
-        container-runtime: ["docker", "podman", "colima"]
+        container-runtime: ["docker", "podman", "rancher"]
         exclude:
           - container-runtime: docker
             platform: macos-latest
           - container-runtime: podman
             platform: macos-latest
-          - container-runtime: colima
+          - container-runtime: rancher
             platform: ubuntu-latest
     runs-on: ${{ matrix.platform }}
     steps:
@@ -48,6 +48,12 @@ jobs:
       - name: Colima setup
         if: ${{ matrix.container-runtime == 'colima' }}
         uses: ./.github/actions/colima-setup
+        with:
+          runner: ${{ matrix.platform }}
+
+      - name: Rancher Desktop setup
+        if: ${{ matrix.container-runtime == 'rancher' }}
+        uses: ./.github/actions/rancher-desktop-setup
         with:
           runner: ${{ matrix.platform }}
 
