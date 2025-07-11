@@ -15,9 +15,13 @@ jobs:
       fail-fast: false
       matrix:
         platform: ["ubuntu-latest", "macos-latest"]
-        container-runtime: ["docker", "orbstack", "podman", "rancher"]
+        container-runtime: ["containerd", "docker", "docker-rootless", "orbstack", "podman", "rancher"]
         exclude:
+          - container-runtime: containerd
+            platform: macos-latest
           - container-runtime: docker
+            platform: macos-latest
+          - container-runtime: docker-rootless
             platform: macos-latest
           - container-runtime: orbstack
             platform: ubuntu-latest
@@ -48,6 +52,59 @@ jobs:
         uses: ./.github/actions/colima-setup
         with:
           runner: ${{ matrix.platform }}
+
+      - name: Docker setup (containerd)
+        if: ${{ matrix.container-runtime == 'containerd' }}
+        uses: docker/setup-docker-action@b60f85385d03ac8acfca6d9996982511d8620a19 #v4.3.0
+        with:
+          rootless: false
+          daemon-config: |
+            {
+              "debug": true,
+              "features": {
+                "containerd-snapshotter": true
+              }
+            }
+
+      - name: Docker setup (Rootfull)
+        if: ${{ matrix.container-runtime == 'docker' }}
+        uses: docker/setup-docker-action@b60f85385d03ac8acfca6d9996982511d8620a19 #v4.3.0
+        with:
+          rootless: false
+          daemon-config: |
+            {
+              "debug": true,
+              "features": {
+                "containerd-snapshotter": false
+              }
+            }
+
+      - name: Docker setup (Rootless)
+        if: ${{ matrix.container-runtime == 'docker-rootless' }}
+        uses: docker/setup-docker-action@b60f85385d03ac8acfca6d9996982511d8620a19 #v4.3.0
+        with:
+          rootless: true
+          daemon-config: |
+            {
+              "debug": true,
+              "features": {
+                "containerd-snapshotter": false
+              }
+            }
+
+      - name: Docker setup (containerd)
+        if: ${{ matrix.container-runtime == 'containerd' }}
+        uses: docker/setup-docker-action@b60f85385d03ac8acfca6d9996982511d8620a19 #v4.3.0
+        with:
+          rootless: false
+          version: type=image,tag=master
+          daemon-config: |
+            {
+              "debug": true,
+              "features": {
+                "containerd-snapshotter": true
+              }
+            }
 
       - name: Orbstack setup
         if: ${{ matrix.container-runtime == 'orbstack' }}
