@@ -34,8 +34,8 @@ func ExampleNew() {
 	// true
 }
 
-// ExampleNew_withCustomHost_valid shows how to create a new client with a valid host.
-func ExampleNew_withCustomHost_valid() {
+// ExampleNew_withCustomHost shows how to create a new client with a valid host, obtained from the current context.
+func ExampleNew_withCustomHost() {
 	dockerHost, err := dockercontext.CurrentDockerHost()
 	if err != nil {
 		log.Println(err)
