@@ -75,4 +75,4 @@ runs:
 
         echo "{}" > $HOME/.docker/config.json
 
-        echo "DOCKER_HOST=unix://${HOME}/.rd/docker.sock" >> $GITHUB_ENV
+        docker context use rancher-desktop

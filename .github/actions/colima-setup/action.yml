@@ -22,7 +22,7 @@ runs:
         colima start --cpu 3 --memory 14 --disk 14 --runtime docker
         colima status
         colima --version
-        echo "DOCKER_HOST=unix://${HOME}/.colima/default/docker.sock" >> $GITHUB_ENV
+        docker context use colima
     - name: Print Colima logs
       if: always()
       shell: bash
