@@ -22,3 +22,7 @@ runs:
         colima status
         colima --version
         echo "DOCKER_HOST=unix://${HOME}/.colima/default/docker.sock" >> $GITHUB_ENV
+    - name: Print Colima logs
+      if: always()
+      shell: bash
+      run: cat /Users/runner/.colima/_lima/colima/ha.stderr.log || true
