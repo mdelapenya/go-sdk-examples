@@ -79,20 +79,6 @@ jobs:
               }
             }
 
-      - name: Docker setup (containerd)
-        if: ${{ matrix.container-runtime == 'containerd' }}
-        uses: docker/setup-docker-action@b60f85385d03ac8acfca6d9996982511d8620a19 #v4.3.0
-        with:
-          rootless: false
-          version: type=image,tag=master
-          daemon-config: |
-            {
-              "debug": true,
-              "features": {
-                "containerd-snapshotter": true
-              }
-            }
-
       - name: Orbstack setup
         if: ${{ matrix.container-runtime == 'orbstack' }}
         uses: ./.github/actions/orbstack-setup
