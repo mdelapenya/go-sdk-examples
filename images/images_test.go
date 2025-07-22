@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"io"
 	"log"
 	"log/slog"
 	"strings"
@@ -133,4 +134,20 @@ FROM ${MY_IMAGE}`
 	// alpine:latest
 	// busybox:latest
 	// nginx:latest
+}
+
+func ExamplePull_withPullHandler() {
+	buff := &bytes.Buffer{}
+
+	err := image.Pull(context.Background(), "alpine:3.22", image.WithPullHandler(func(r io.ReadCloser) error {
+		_, err := io.Copy(buff, r)
+		return err
+	}))
+
+	fmt.Println(err)
+	fmt.Println(strings.Contains(buff.String(), "Pulling from library/alpine"))
+
+	// Output:
+	// <nil>
+	// true
 }
