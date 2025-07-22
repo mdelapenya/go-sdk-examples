@@ -2,21 +2,15 @@ module github.com/mdelapenya/go-sdk-examples
 
 go 1.24.1
 
-// remove it once alpha-009 is released
-replace (
-	github.com/docker/go-sdk/client => github.com/docker/go-sdk/client v0.0.0-20250710153814-1f6ed486a631
-	github.com/docker/go-sdk/volume => github.com/docker/go-sdk/volume v0.0.0-20250710153814-1f6ed486a631
-)
-
 require (
-	github.com/docker/docker v28.2.2+incompatible
+	github.com/docker/docker v28.3.2+incompatible
 	github.com/docker/go-sdk/client v0.1.0-alpha009
-	github.com/docker/go-sdk/config v0.1.0-alpha008
-	github.com/docker/go-sdk/container v0.1.0-alpha008
-	github.com/docker/go-sdk/context v0.1.0-alpha008
-	github.com/docker/go-sdk/image v0.1.0-alpha008
-	github.com/docker/go-sdk/network v0.1.0-alpha008
-	github.com/docker/go-sdk/volume v0.1.0-alpha009
+	github.com/docker/go-sdk/config v0.1.0-alpha009
+	github.com/docker/go-sdk/container v0.1.0-alpha009
+	github.com/docker/go-sdk/context v0.1.0-alpha009
+	github.com/docker/go-sdk/image v0.1.0-alpha009
+	github.com/docker/go-sdk/network v0.1.0-alpha009
+	github.com/docker/go-sdk/volume v0.1.0-alpha001
 )
 
 require (
