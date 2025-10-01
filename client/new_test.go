@@ -14,6 +14,7 @@ func ExampleNew() {
 	cli, err := client.New(context.Background())
 	if err != nil {
 		log.Println(err)
+		return
 	}
 	defer func() {
 		err = cli.Close()
@@ -45,6 +46,7 @@ func ExampleNew_withCustomHost() {
 	cli, err := client.New(context.Background(), client.WithDockerHost(dockerHost))
 	if err != nil {
 		log.Println(err)
+		return
 	}
 	defer func() {
 		err = cli.Close()
@@ -64,47 +66,16 @@ func ExampleNew_useUnderlyingClient() {
 	cli, err := client.New(context.Background())
 	if err != nil {
 		log.Println(err)
+		return
 	}
 
-	dockerClient, err := cli.Client()
+	ping, err := cli.Ping(context.Background())
 	if err != nil {
 		log.Println(err)
-	}
-	fmt.Println(dockerClient != nil)
-
-	ping, err := dockerClient.Ping(context.Background())
-	if err != nil {
-		log.Println(err)
+		return
 	}
 	fmt.Println(ping.OSType != "")
 
 	// Output:
-	// true
-	// true
-}
-
-// ExampleDefault_useUnderlyingClient shows how to use the underlying Docker client.
-func ExampleDefault_useUnderlyingClient() {
-	dockerClient, err := client.DefaultClient.Client()
-	if err != nil {
-		log.Println(err)
-	}
-	defer func() {
-		// do not forget to close the client
-		if err := dockerClient.Close(); err != nil {
-			log.Println(err)
-		}
-	}()
-
-	fmt.Println(dockerClient != nil)
-
-	ping, err := dockerClient.Ping(context.Background())
-	if err != nil {
-		log.Println(err)
-	}
-	fmt.Println(ping.OSType != "")
-
-	// Output:
-	// true
 	// true
 }

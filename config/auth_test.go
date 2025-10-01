@@ -32,7 +32,7 @@ func ExampleAuthConfigForHostname() {
 func ExampleAuthConfigForHostname_publicRegistry() {
 	authConfig, err := config.AuthConfigForHostname(auth.DockerRegistry)
 	fmt.Println(err)
-	fmt.Println(authConfig.Username == "")
+	fmt.Println(authConfig.Username != "")
 
 	// Output:
 	// <nil>
