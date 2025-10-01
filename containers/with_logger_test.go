@@ -31,7 +31,7 @@ func ExampleRun_withLogger() {
 
 	ctr, err := container.Run(
 		context.Background(),
-		container.WithDockerClient(cli),
+		container.WithClient(cli),
 		container.WithImage("nginx:alpine"),
 		container.WithExposedPorts("80/tcp"),
 		container.WithWaitStrategy(wait.ForListeningPort("80/tcp").WithTimeout(time.Second*5)),
