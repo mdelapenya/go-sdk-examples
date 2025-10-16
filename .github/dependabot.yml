@@ -9,3 +9,7 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+    groups:
+      go-sdk:
+        patterns:
+          - "github.com/docker/go-sdk*"
