@@ -3,7 +3,7 @@ module github.com/mdelapenya/go-sdk-examples
 go 1.24.1
 
 require (
-	github.com/docker/docker v28.3.2+incompatible
+	github.com/docker/docker v28.5.1+incompatible
 	github.com/docker/go-sdk/client v0.1.0-alpha010
 	github.com/docker/go-sdk/config v0.1.0-alpha010
 	github.com/docker/go-sdk/container v0.1.0-alpha011
@@ -29,7 +29,6 @@ require (
 	github.com/felixge/httpsnoop v1.0.4 // indirect
 	github.com/go-logr/logr v1.4.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
-	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/klauspost/compress v1.18.0 // indirect
 	github.com/moby/docker-image-spec v1.3.1 // indirect
