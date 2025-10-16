@@ -8,7 +8,7 @@ require (
 	github.com/docker/go-sdk/config v0.1.0-alpha010
 	github.com/docker/go-sdk/container v0.1.0-alpha010
 	github.com/docker/go-sdk/context v0.1.0-alpha010
-	github.com/docker/go-sdk/image v0.1.0-alpha010
+	github.com/docker/go-sdk/image v0.1.0-alpha011
 	github.com/docker/go-sdk/network v0.1.0-alpha010
 	github.com/docker/go-sdk/volume v0.1.0-alpha002
 )
