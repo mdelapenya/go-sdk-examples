@@ -57,7 +57,7 @@ jobs:
             }
 
       - name: Docker setup (Rootfull)
-        if: ${{ matrix.container-runtime == 'docker' }}
+        if: ${{ matrix.container-runtime == 'docker' && matrix.platform == 'ubuntu-latest' }}
         uses: docker/setup-docker-action@b60f85385d03ac8acfca6d9996982511d8620a19 #v4.3.0
         with:
           rootless: false
@@ -97,7 +97,7 @@ jobs:
           runner: ${{ matrix.platform }}
 
       - name: Docker setup (macOS Intel with Lima)
-        if: ${{ matrix.platform == 'macos-15-intel' }}
+        if: ${{ matrix.platform == 'macos-15-intel' && matrix.container-runtime == 'docker' }}
         uses: docker/setup-docker-action@b60f85385d03ac8acfca6d9996982511d8620a19 # v4.3.0
         env:
           LIMA_START_ARGS: --cpus 3 --memory 14
