@@ -33,12 +33,12 @@ github.com/docker/go-sdk/client v0.1.0-alpha010 h1:in0zJoXNxReNc7wogYexkXQl7uw6Y
 github.com/docker/go-sdk/client v0.1.0-alpha010/go.mod h1:sbp21rxA9R3Nbte0C1ZAdPfMTbn0LVEqL6dxpZ7ahI4=
 github.com/docker/go-sdk/config v0.1.0-alpha010 h1:OkNQeadloIEbTi1qIEXbDY5PqAYQg3igkBnKffHMGXg=
 github.com/docker/go-sdk/config v0.1.0-alpha010/go.mod h1:2lhg2sMZMKTtBVrsTG2Hn9P0dXMp1weecaJrE7OtNDM=
-github.com/docker/go-sdk/container v0.1.0-alpha010 h1:j2KKk7f8X4r45h1N6LEy4dMzXrSpG/955+sX6BMlcso=
-github.com/docker/go-sdk/container v0.1.0-alpha010/go.mod h1:E0eM35EN4mD4s93My5ggFjqexOWxNrOD/YUKuPUKyQs=
+github.com/docker/go-sdk/container v0.1.0-alpha011 h1:sMqOud537m/MWxUHQbz+tYBuzO6asWEKxXpZy3KlCsw=
+github.com/docker/go-sdk/container v0.1.0-alpha011/go.mod h1:jUUUwwiWaqnt/B+TzIHFNsvsI8rK7bFomq7KmGXV5Z4=
 github.com/docker/go-sdk/context v0.1.0-alpha010 h1:u+Ke5rS0vzQEGvjBezPCQUVwkmrHbHaz4UmvoEYyyhY=
 github.com/docker/go-sdk/context v0.1.0-alpha010/go.mod h1:Kp5bEhHA55J4wUBzVc33yhRaJGDx5x53xdc37UHa6+A=
-github.com/docker/go-sdk/image v0.1.0-alpha010 h1:Zz679J5uiqtXjIIdMvQZProaj8QoPi9+3cl3T7Kxr3Q=
-github.com/docker/go-sdk/image v0.1.0-alpha010/go.mod h1:z3rMK+f62qtjOn8rRwTyUsfE/IzZy1SrI4ob9Gd6jX4=
+github.com/docker/go-sdk/image v0.1.0-alpha011 h1:Eu5eINH7RfvcjDxfjp8VjdJoFxl4zJ7Zt4bH+7gnwiE=
+github.com/docker/go-sdk/image v0.1.0-alpha011/go.mod h1:z3rMK+f62qtjOn8rRwTyUsfE/IzZy1SrI4ob9Gd6jX4=
 github.com/docker/go-sdk/network v0.1.0-alpha010 h1:6+VZ+PqjVwOu0PyZr5pgalysL47aXbkSMgaHWnLXNBQ=
 github.com/docker/go-sdk/network v0.1.0-alpha010/go.mod h1:zmmfa8IJGc4IBR8sPwKcAiujmXHyupWC/eVjVCBAYSw=
 github.com/docker/go-sdk/volume v0.1.0-alpha002 h1:QP5eCXdtxxMGQJNn78Spf2FR2cEZs5R/7P98c9xlFDU=
