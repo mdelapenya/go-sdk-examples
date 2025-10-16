@@ -8,10 +8,6 @@ permissions:
   # Optional: allow read access to pull request. Use with `only-new-issues` option.
   # pull-requests: read
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.sha }}
-  cancel-in-progress: true
-
 jobs:
   test-go-project:
     name: "test: ${{ matrix.platform }}/${{ matrix.container-runtime }}"
