@@ -6,9 +6,9 @@ require (
 	github.com/docker/docker v28.3.2+incompatible
 	github.com/docker/go-sdk/client v0.1.0-alpha010
 	github.com/docker/go-sdk/config v0.1.0-alpha010
-	github.com/docker/go-sdk/container v0.1.0-alpha010
+	github.com/docker/go-sdk/container v0.1.0-alpha011
 	github.com/docker/go-sdk/context v0.1.0-alpha010
-	github.com/docker/go-sdk/image v0.1.0-alpha010
+	github.com/docker/go-sdk/image v0.1.0-alpha011
 	github.com/docker/go-sdk/network v0.1.0-alpha010
 	github.com/docker/go-sdk/volume v0.1.0-alpha002
 )
