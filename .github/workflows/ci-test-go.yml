@@ -42,12 +42,14 @@ jobs:
         run: go build ./...
 
       - name: Colima setup
+        timeout-minutes: 10
         if: ${{ matrix.container-runtime == 'colima' }}
         uses: ./.github/actions/colima-setup
         with:
           runner: ${{ matrix.platform }}
 
       - name: Docker setup (containerd)
+        timeout-minutes: 10
         if: ${{ matrix.container-runtime == 'containerd' }}
         uses: docker/setup-docker-action@b60f85385d03ac8acfca6d9996982511d8620a19 #v4.3.0
         with:
@@ -61,6 +63,7 @@ jobs:
             }
 
       - name: Docker setup (Rootfull)
+        timeout-minutes: 10
         if: ${{ matrix.container-runtime == 'docker' && matrix.platform == 'ubuntu-latest' }}
         uses: docker/setup-docker-action@b60f85385d03ac8acfca6d9996982511d8620a19 #v4.3.0
         with:
@@ -74,6 +77,7 @@ jobs:
             }
 
       - name: Docker setup (Rootless)
+        timeout-minutes: 10
         if: ${{ matrix.container-runtime == 'docker-rootless' }}
         uses: docker/setup-docker-action@b60f85385d03ac8acfca6d9996982511d8620a19 #v4.3.0
         with:
@@ -87,27 +91,30 @@ jobs:
             }
 
       - name: Orbstack setup
+        timeout-minutes: 10
         if: ${{ matrix.container-runtime == 'orbstack' }}
         uses: ./.github/actions/orbstack-setup
 
       - name: Podman setup
+        timeout-minutes: 10
         if: ${{ matrix.container-runtime == 'podman' }}
         uses: ./.github/actions/podman-setup
 
       - name: Rancher Desktop setup
+        timeout-minutes: 10
         if: ${{ matrix.container-runtime == 'rancher' }}
         uses: ./.github/actions/rancher-desktop-setup
         with:
           runner: ${{ matrix.platform }}
 
       - name: Docker setup (macOS Intel with Lima)
+        timeout-minutes: 10
         if: ${{ matrix.platform == 'macos-15-intel' && matrix.container-runtime == 'docker' }}
         uses: docker/setup-docker-action@b60f85385d03ac8acfca6d9996982511d8620a19 # v4.3.0
         env:
           LIMA_START_ARGS: --cpus 3 --memory 14
 
       - name: debug
-        timeout-minutes: 30
         shell: bash
         run: |
           docker context ls
@@ -115,7 +122,7 @@ jobs:
           mkdir -p "$HOME/.docker/contexts/meta"
 
       - name: go test
-        timeout-minutes: 30
+        timeout-minutes: 10
         shell: bash
         run: |
           go install gotest.tools/gotestsum@latest
