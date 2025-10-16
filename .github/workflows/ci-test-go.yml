@@ -21,6 +21,8 @@ jobs:
             container-runtime: "orbstack"
           - platform: "macos-15-intel"
             container-runtime: "docker"
+          - platform: "macos-15-intel"
+            container-runtime: "colima"
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Check out code into the Go module directory
