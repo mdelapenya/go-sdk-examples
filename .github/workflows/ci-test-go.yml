@@ -23,6 +23,8 @@ jobs:
             container-runtime: "docker"
           - platform: "macos-15-intel"
             container-runtime: "colima"
+          - platform: "macos-15-intel"
+            container-runtime: "rancher"
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Check out code into the Go module directory

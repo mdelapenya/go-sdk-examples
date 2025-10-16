@@ -20,7 +20,7 @@ These examples are tested on GitHub runners with the following container runtime
 | Docker (Lima)        | macOS Intel (15) | ✅ |
 | Podman               | Ubuntu | ✅ |
 | Colima               | macOS Intel (15) | ✅ |
-| Rancher Desktop      | macOS  | ❌ (pending) |
+| Rancher Desktop      | macOS Intel (15) | ✅ |
 | Orbstack             | macOS  | ❌ (pending) |
 
 The GitHub runners are configured as follows:
