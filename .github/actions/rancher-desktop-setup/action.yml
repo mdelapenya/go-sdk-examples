@@ -32,6 +32,7 @@ runs:
           "pathManagementStrategy": "rcfiles"
         }
         EOF
+        cat $HOME/Library/Preferences/rancher-desktop/settings.json
     - name: Rancher Desktop setup
       shell: bash
       run: |
