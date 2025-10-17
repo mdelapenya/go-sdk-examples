@@ -35,6 +35,7 @@ runs:
     - name: Rancher Desktop setup
       shell: bash
       run: |
+        brew install docker
         brew install --cask rancher
 
         TIMEOUT_SECS_CLI_TOOLS=420
