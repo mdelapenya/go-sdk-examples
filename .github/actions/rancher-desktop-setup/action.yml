@@ -14,6 +14,24 @@ runs:
           echo "::error::Rancher Desktop is only supported on macOS"
           exit 1
         fi
+    - name: Disable admin-access before start up
+      shell: bash
+      run: |
+        mkdir -p $HOME/Library/Preferences/rancher-desktop
+        touch $HOME/Library/Preferences/rancher-desktop/settings.json
+        cat <<EOF > $HOME/Library/Preferences/rancher-desktop/settings.json
+        {
+          "version": 5,
+          "application": {
+            "adminAccess": false
+            "updater":  { "enabled": false },
+          },
+          "virtualMachine" {
+            "memoryInGB": 6,
+          },
+          "pathManagementStrategy": "rcfiles"
+        }
+        EOF
     - name: Rancher Desktop setup
       shell: bash
       run: |
