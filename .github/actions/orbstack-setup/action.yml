@@ -17,8 +17,29 @@ runs:
     - name: Orbstack setup
       shell: bash
       run: |
-        brew install orbstack
-        orb list
-        orb start
+        brew install --cask orbstack
+
+        echo "Wait for OrbStack to be ready"
+        TIMEOUT_SECS=60
+        for i in $(seq 1 ${TIMEOUT_SECS}); do
+            if orb version &>/dev/null; then
+              echo "OrbStack is ready after ${i}s"
+              break
+            fi
+            echo "Waiting for OrbStack to start... ${i}s"
+            sleep 1
+        done
+
         orb version
+        orb list
+
+        echo "Wait for Docker socket"
+        for i in $(seq 1 60); do
+            if [ -e "$HOME/.orbstack/run/docker.sock" ]; then
+              echo "OrbStack Docker socket available after ${i}s"
+              break
+            fi
+            sleep 1
+        done
+
         docker context use orbstack
