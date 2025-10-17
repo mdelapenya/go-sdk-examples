@@ -19,9 +19,10 @@ These examples are tested on GitHub runners with the following container runtime
 | Docker (Containerd)  | Ubuntu | ✅ |
 | Docker (Lima)        | macOS Intel (15) | ✅ |
 | Podman               | Ubuntu | ✅ |
-| Colima               | macOS Intel (15) | ✅ |
-| Rancher Desktop      | macOS Intel (15) | ✅ |
-| Orbstack             | macOS  | ❌ (pending) |
+| Colima (Docker)      | macOS Intel (15) | ✅ |
+| Colima (Containerd)  | macOS Intel (15) | ✅ |
+| Rancher Desktop      | macOS Intel (15) | ❌ (pending) |
+| Orbstack             | macOS  | ❌ (not supported - nested virtualization required) |
 
 The GitHub runners are configured as follows:
 - **Ubuntu runners**: Using `ubuntu-latest` with native Docker support
