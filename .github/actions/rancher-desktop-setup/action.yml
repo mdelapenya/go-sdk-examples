@@ -19,7 +19,7 @@ runs:
       run: |
         brew install --cask rancher
 
-        TIMEOUT_SECS_CLI_TOOLS=240
+        TIMEOUT_SECS_CLI_TOOLS=420
         TIMEOUT_SECS_USER_SOCKET=300
 
         echo "Open Rancher Desktop app"
@@ -31,11 +31,20 @@ runs:
               echo "Rancher Desktop CLI tools created after ${i}s"
               break
             fi
+            if [ $((i % 30)) -eq 0 ]; then
+              echo "Still waiting for CLI tools... ${i}s elapsed"
+              echo "Checking for rdctl in alternate locations:"
+              find "$HOME/.rd" -name rdctl -type f 2>/dev/null || echo "No rdctl found yet"
+              ls -la "$HOME/.rd/" 2>/dev/null || echo ".rd directory not created yet"
+            fi
             sleep 1
         done
 
         if [ ! -e "$HOME/.rd/bin/rdctl" ]; then
-          echo "Rancher Desktop CLI tools not found"
+          echo "Rancher Desktop CLI tools not found after ${TIMEOUT_SECS_CLI_TOOLS}s"
+          echo "Final directory check:"
+          ls -la "$HOME/.rd/" 2>/dev/null || echo ".rd directory does not exist"
+          find "$HOME/.rd" -name rdctl -type f 2>/dev/null || echo "rdctl not found anywhere in .rd"
           exit 1
         fi
 
