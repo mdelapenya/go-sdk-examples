@@ -25,7 +25,7 @@ jobs:
           - platform: "macos-15-intel"
             container-runtime: "colima-containerd"
             colima-runtime: "containerd"
-          - platform: "macos-15-intel"
+          - platform: "macos-latest"
             container-runtime: "rancher"
     runs-on: ${{ matrix.platform }}
     steps:

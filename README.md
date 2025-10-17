@@ -21,7 +21,7 @@ These examples are tested on GitHub runners with the following container runtime
 | Podman               | Ubuntu | ✅ |
 | Colima (Docker)      | macOS Intel (15) | ✅ |
 | Colima (Containerd)  | macOS Intel (15) | ✅ |
-| Rancher Desktop      | macOS Intel (15) | ❌ (pending) |
+| Rancher Desktop      | macOS  | ❌ (pending) |
 | Orbstack             | macOS  | ❌ (not supported - nested virtualization required) |
 
 The GitHub runners are configured as follows:
