@@ -17,7 +17,7 @@ jobs:
         platform: ["ubuntu-latest"]
         container-runtime: ["containerd", "docker", "docker-rootless", "podman"]
         include:
-          - platform: "macos-15-intel"
+          - platform: "macos-latest"
             container-runtime: "orbstack"
           - platform: "macos-15-intel"
             container-runtime: "docker"
