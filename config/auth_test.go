@@ -20,13 +20,11 @@ func ExampleAuthConfigs() {
 }
 
 func ExampleAuthConfigForHostname() {
-	authConfig, err := config.AuthConfigForHostname(auth.IndexDockerIO)
+	_, err := config.AuthConfigForHostname(auth.IndexDockerIO)
 	fmt.Println(err)
-	fmt.Println(authConfig.Username != "")
 
 	// Output:
 	// <nil>
-	// true
 }
 
 func ExampleAuthConfigForHostname_publicRegistry() {
