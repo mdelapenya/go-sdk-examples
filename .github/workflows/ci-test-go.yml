@@ -15,8 +15,12 @@ jobs:
       fail-fast: false
       matrix:
         platform: ["ubuntu-latest"]
-        container-runtime: ["containerd", "docker", "docker-rootless", "podman"]
+        container-runtime: ["containerd", "docker", "docker-rootless"]
         include:
+          - platform: "ubuntu-latest"
+            container-runtime: "podman"
+          - platform: "macos-latest"
+            container-runtime: "podman"
           - platform: "macos-15-intel"
             container-runtime: "docker"
           - platform: "macos-15-intel"
