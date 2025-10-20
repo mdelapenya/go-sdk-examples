@@ -106,6 +106,8 @@ jobs:
         timeout-minutes: 10
         if: ${{ matrix.container-runtime == 'podman' }}
         uses: ./.github/actions/podman-setup
+        with:
+          runner: ${{ matrix.platform }}
 
       - name: Rancher Desktop setup
         timeout-minutes: 10
