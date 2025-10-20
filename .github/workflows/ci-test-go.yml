@@ -19,8 +19,6 @@ jobs:
         include:
           - platform: "ubuntu-latest"
             container-runtime: "podman"
-          - platform: "macos-latest"
-            container-runtime: "podman"
           - platform: "macos-15-intel"
             container-runtime: "docker"
           - platform: "macos-15-intel"

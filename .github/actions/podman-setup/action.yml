@@ -41,8 +41,8 @@ runs:
         echo "Adding Podman to PATH..."
         echo "/opt/podman/bin" >> $GITHUB_PATH
 
-        echo "Initializing Podman machine..."
-        /opt/podman/bin/podman machine init
+        echo "Initializing Podman machine with QEMU..."
+        /opt/podman/bin/podman machine init --virt qemu
 
         echo "Starting Podman machine..."
         /opt/podman/bin/podman machine start

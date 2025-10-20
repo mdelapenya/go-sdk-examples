@@ -19,7 +19,7 @@ These examples are tested on GitHub runners with the following container runtime
 | Docker (Containerd)  | Ubuntu | ✅ |
 | Docker (Lima)        | macOS Intel (15) | ✅ |
 | Podman               | Ubuntu | ✅ |
-| Podman               | macOS | ✅ |
+| Podman               | macOS | ❌ (not supported - nested virtualization required) |
 | Colima (Docker)      | macOS Intel (15) | ✅ |
 | Colima (Containerd)  | macOS Intel (15) | ✅ |
 | Rancher Desktop      | macOS  | ❌ (pending) |
