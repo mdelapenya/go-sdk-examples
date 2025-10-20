@@ -27,9 +27,22 @@ runs:
         podman info
     - name: Podman setup (macOS)
       shell: bash
-      if: ${{ inputs.runner == 'macos-latest' }}
+      if: ${{ startsWith(inputs.runner, 'macos') }}
       run: |
-        brew install podman
+        PODMAN_VERSION="5.0.0"
+        PKG_URL="https://github.com/containers/podman/releases/download/v${PODMAN_VERSION}/podman-installer-macos-universal.pkg"
+
+        echo "Downloading Podman ${PODMAN_VERSION} universal installer..."
+        curl -fsSL -o /tmp/podman-installer.pkg "${PKG_URL}"
+
+        echo "Installing Podman..."
+        sudo installer -pkg /tmp/podman-installer.pkg -target /
+
+        echo "Initializing Podman machine..."
         podman machine init
+
+        echo "Starting Podman machine..."
         podman machine start
+
+        echo "Podman info:"
         podman info
