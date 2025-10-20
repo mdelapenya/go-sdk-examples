@@ -38,11 +38,14 @@ runs:
         echo "Installing Podman..."
         sudo installer -pkg /tmp/podman-installer.pkg -target /
 
+        echo "Adding Podman to PATH..."
+        echo "/opt/podman/bin" >> $GITHUB_PATH
+
         echo "Initializing Podman machine..."
-        podman machine init
+        /opt/podman/bin/podman machine init
 
         echo "Starting Podman machine..."
-        podman machine start
+        /opt/podman/bin/podman machine start
 
         echo "Podman info:"
-        podman info
+        /opt/podman/bin/podman info
