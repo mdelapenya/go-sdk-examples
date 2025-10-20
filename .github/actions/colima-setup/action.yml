@@ -4,6 +4,9 @@ inputs:
   runner:
     description: "The runner type (e.g., macos-latest)"
     default: macos-latest
+  colima-runtime:
+    description: "Container runtime to use (docker or containerd)"
+    default: docker
 runs:
   using: "composite"
   steps:
@@ -19,11 +22,18 @@ runs:
       run: |
         brew install lima-additional-guestagents docker colima
         colima list
-        colima start --cpu 3 --memory 14 --disk 14 --runtime docker
+        colima start --cpu 3 --memory 14 --disk 14 --runtime ${{ inputs.colima-runtime }}
         colima status
         colima --version
-        docker context use colima
+    - name: nerdctl install (containerd runtime)
+      if: ${{ inputs.colima-runtime == 'containerd' }}
+      shell: bash
+      run: |
+       colima nerdctl install
     - name: Print Colima logs
       if: always()
       shell: bash
       run: cat /Users/runner/.colima/_lima/colima/ha.stderr.log || true
+    - name: Set Colima context
+      shell: bash
+      run: docker context use colima

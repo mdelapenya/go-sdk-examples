@@ -2,8 +2,8 @@ name: "Rancher Desktop Setup"
 description: "Sets up Rancher Desktop"
 inputs:
   runner:
-    description: "The runner type (e.g., macos-latest)"
-    default: macos-latest
+    description: "The runner type (e.g., macos-latest, macos-15-intel)"
+    required: true
 runs:
   using: "composite"
   steps:
@@ -14,50 +14,75 @@ runs:
           echo "::error::Rancher Desktop is only supported on macOS"
           exit 1
         fi
+    - name: Disable admin-access before start up
+      shell: bash
+      run: |
+        mkdir -p $HOME/Library/Preferences/rancher-desktop
+        touch $HOME/Library/Preferences/rancher-desktop/settings.json
+        cat <<EOF > $HOME/Library/Preferences/rancher-desktop/settings.json
+        {
+          "version": 5,
+          "application": {
+            "adminAccess": false
+            "updater":  { "enabled": false },
+          },
+          "virtualMachine" {
+            "memoryInGB": 6,
+          },
+          "pathManagementStrategy": "rcfiles"
+        }
+        EOF
+        cat $HOME/Library/Preferences/rancher-desktop/settings.json
     - name: Rancher Desktop setup
       shell: bash
       run: |
-        brew install docker docker-compose
+        brew install docker
         brew install --cask rancher
 
-        TIMEOUT_SECS_CLI_TOOLS=240
+        TIMEOUT_SECS_CLI_TOOLS=420
         TIMEOUT_SECS_USER_SOCKET=300
 
         echo "Open Rancher Desktop app"
         open "/Applications/Rancher Desktop.app"
 
-        GH_RD_BIN="/Applications/Rancher Desktop.app/Contents/Resources/resources/darwin/bin/"
-
         echo "Wait max of ${TIMEOUT_SECS_CLI_TOOLS}s for Rancher Desktop to create CLI tools"
         for i in $(seq 1 ${TIMEOUT_SECS_CLI_TOOLS}); do
-            if [ -e "${GH_RD_BIN}/rdctl" ]; then
+            if [ -e "$HOME/.rd/bin/rdctl" ]; then
               echo "Rancher Desktop CLI tools created after ${i}s"
               break
             fi
-            echo "CLI tools not installed yet after ${i}. Waiting..."
-            sleep 2
+            if [ $((i % 30)) -eq 0 ]; then
+              echo "Still waiting for CLI tools... ${i}s elapsed"
+              echo "Checking for rdctl in alternate locations:"
+              find "$HOME/.rd" -name rdctl -type f 2>/dev/null || echo "No rdctl found yet"
+              ls -la "$HOME/.rd/" 2>/dev/null || echo ".rd directory not created yet"
+            fi
+            sleep 1
         done
 
-        if [ ! -e "${GH_RD_BIN}/rdctl" ]; then
-          echo "Rancher Desktop CLI tools not found"
+        if [ ! -e "$HOME/.rd/bin/rdctl" ]; then
+          echo "Rancher Desktop CLI tools not found after ${TIMEOUT_SECS_CLI_TOOLS}s"
+          echo "Final directory check:"
+          ls -la "$HOME/.rd/" 2>/dev/null || echo ".rd directory does not exist"
+          find "$HOME/.rd" -name rdctl -type f 2>/dev/null || echo "rdctl not found anywhere in .rd"
           exit 1
         fi
 
         echo "Rancher Desktop initialised successfully, now configure the container runtime"
-        "${GH_RD_BIN}/rdctl" set \
-          --application.admin-access=false \
-          --application.path-management-strategy=manual \
-          --application.start-in-background=true \
+        $HOME/.rd/bin/rdctl set \
           --container-engine.name=moby \
+          --application.admin-access=false \
           --kubernetes.enabled=false \
+          --application.start-in-background=true \
+          --application.path-management-strategy=manual \
           --virtual-machine.number-cpus=3 \
           --virtual-machine.memory-in-gb=14 \
           --verbose \
           || true
 
         echo "Restart Rancher Desktop"
-        "${GH_RD_BIN}/rdctl" shutdown
-        "${GH_RD_BIN}/rdctl" start
+        $HOME/.rd/bin/rdctl shutdown
+        $HOME/.rd/bin/rdctl start
 
         echo "Wait max of ${TIMEOUT_SECS_USER_SOCKET}s for Rancher socket"
 
