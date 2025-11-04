@@ -125,6 +125,7 @@ jobs:
         shell: bash
         run: |
           docker context ls
+          docker info
           # create the context directory to avoid errors in the CI worker because of no context is created
           mkdir -p "$HOME/.docker/contexts/meta"
 
