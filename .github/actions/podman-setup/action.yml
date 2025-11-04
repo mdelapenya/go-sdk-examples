@@ -49,3 +49,19 @@ runs:
 
         echo "Podman info:"
         /opt/podman/bin/podman info
+
+    - name: Configure Docker context for Podman (Ubuntu)
+      shell: bash
+      if: ${{ inputs.runner == 'ubuntu-latest' }}
+      run: |
+        export XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-/run/user/$(id -u)}
+        docker context create podman --docker "host=unix://${XDG_RUNTIME_DIR}/podman/podman.sock"
+        docker context use podman
+
+    - name: Configure Docker context for Podman (macOS)
+      shell: bash
+      if: ${{ startsWith(inputs.runner, 'macos') }}
+      run: |
+        PODMAN_SOCK=$(/opt/podman/bin/podman machine inspect --format '{{.ConnectionInfo.PodmanSocket.Path}}')
+        docker context create podman --docker "host=unix://${PODMAN_SOCK}"
+        docker context use podman
