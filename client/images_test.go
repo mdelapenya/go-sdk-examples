@@ -1,13 +1,13 @@
-package config
+package client
 
 import (
 	"fmt"
 
-	"github.com/docker/go-sdk/config/auth"
+	"github.com/docker/go-sdk/client/registry"
 )
 
 func Example_parseImagRef() {
-	ref, err := auth.ParseImageRef("nginx:latest")
+	ref, err := registry.ParseImageRef("nginx:latest")
 	if err != nil {
 		fmt.Println("Error parsing image:", err)
 		return
