@@ -145,6 +145,8 @@ func ExamplePull_withPullHandler() {
 	}))
 
 	fmt.Println(err)
+	// debug:
+	fmt.Println(buff.String())
 	fmt.Println(strings.Contains(buff.String(), "Pulling from library/alpine"))
 
 	// Output:
