@@ -139,7 +139,8 @@ FROM ${MY_IMAGE}`
 func ExamplePull_withPullHandler() {
 	buff := &bytes.Buffer{}
 
-	err := image.Pull(context.Background(), "alpine:3.22", image.WithPullHandler(func(r io.ReadCloser) error {
+	// alpine:3.22 is in the public registry, so we need to use the full image reference for Podman to work.
+	err := image.Pull(context.Background(), "docker.io/alpine:3.22", image.WithPullHandler(func(r io.ReadCloser) error {
 		_, err := io.Copy(buff, r)
 		return err
 	}))
