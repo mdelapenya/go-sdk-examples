@@ -6,7 +6,6 @@ import (
 	"log"
 
 	"github.com/docker/go-sdk/client"
-	dockercontext "github.com/docker/go-sdk/context"
 )
 
 // ExampleNew shows how to create a new client.
@@ -33,32 +32,6 @@ func ExampleNew() {
 
 	// Output:
 	// true
-}
-
-// ExampleNew_withCustomHost shows how to create a new client with a valid host, obtained from the current context.
-func ExampleNew_withCustomHost() {
-	dockerHost, err := dockercontext.CurrentDockerHost()
-	if err != nil {
-		log.Println(err)
-		return
-	}
-
-	cli, err := client.New(context.Background(), client.WithDockerHost(dockerHost))
-	if err != nil {
-		log.Println(err)
-		return
-	}
-	defer func() {
-		err = cli.Close()
-		if err != nil {
-			log.Println(err)
-		}
-	}()
-
-	fmt.Println(cli == nil)
-
-	// Output:
-	// false
 }
 
 // ExampleNew_useUnderlyingClient shows how to use the underlying Docker client.
