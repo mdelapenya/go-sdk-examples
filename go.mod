@@ -3,7 +3,7 @@ module github.com/mdelapenya/go-sdk-examples
 go 1.24.1
 
 require (
-	github.com/docker/docker v28.5.1+incompatible
+	github.com/docker/docker v28.5.2+incompatible
 	github.com/docker/go-sdk/client v0.1.0-alpha010
 	github.com/docker/go-sdk/config v0.1.0-alpha010
 	github.com/docker/go-sdk/container v0.1.0-alpha011
