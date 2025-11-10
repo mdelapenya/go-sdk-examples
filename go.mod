@@ -4,16 +4,17 @@ go 1.24.1
 
 require (
 	github.com/docker/docker v28.5.1+incompatible
-	github.com/docker/go-sdk/client v0.1.0-alpha010
-	github.com/docker/go-sdk/config v0.1.0-alpha010
-	github.com/docker/go-sdk/container v0.1.0-alpha011
-	github.com/docker/go-sdk/context v0.1.0-alpha010
-	github.com/docker/go-sdk/image v0.1.0-alpha011
-	github.com/docker/go-sdk/network v0.1.0-alpha010
-	github.com/docker/go-sdk/volume v0.1.0-alpha002
+	github.com/docker/go-sdk/client v0.1.0-alpha011
+	github.com/docker/go-sdk/config v0.1.0-alpha011
+	github.com/docker/go-sdk/container v0.1.0-alpha012
+	github.com/docker/go-sdk/context v0.1.0-alpha011
+	github.com/docker/go-sdk/image v0.1.0-alpha012
+	github.com/docker/go-sdk/network v0.1.0-alpha011
+	github.com/docker/go-sdk/volume v0.1.0-alpha003
 )
 
 require (
+	dario.cat/mergo v1.0.2 // indirect
 	github.com/Azure/go-ansiterm v0.0.0-20250102033503-faa5f7b0171c // indirect
 	github.com/Microsoft/go-winio v0.6.2 // indirect
 	github.com/caarlos0/env/v11 v11.3.1 // indirect
